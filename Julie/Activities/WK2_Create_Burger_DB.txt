@@ -1,0 +1,117 @@
+Q1.
+CREATE TABLE tblBurger
+(
+burgerID TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+burgerDesc VARCHAR(30),
+burgerPrice DECIMAL(4,2),
+burgerNoSales SMALLINT UNSIGNED
+) ENGINE = MYISAM;
+CREATE TABLE tblIngredient
+(
+ingID TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ingDesc VARCHAR(20),
+ingCost DECIMAL(4,2)
+) ENGINE = MYISAM;
+CREATE TABLE tblCombination
+(
+comboID TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+burgerID TINYINT,
+ingID TINYINT
+) ENGINE = MYISAM;
+
+Q2.
+INSERT INTO tblBurger (burgerDesc, burgerPrice, burgerNoSales)
+VALUES ("Plain", "2.50", "100"), ("Egg", "3.00", "250"), ("Hawaiian", "2.70", "200"), ("Cheese", "2.90", "275")
+INSERT INTO tblCombination (burgerID, ingID)
+VALUES ("1", "1"), ("1", "2"), ("1", "3"), ("1", "4"), ("2", "1"), ("2", "2"), ("2", "3"), ("2", "4"), ("2", "5"), ("3", "1"), ("3", "2"), ("3", "3"), ("3", "6"), ("4", "1"), ("4", "2"), ("4", "3"), ("4", "4"), ("4", "7")
+INSERT INTO tblIngredient (ingDesc, ingCost)
+VALUES ("Bread", "0.50"), ("Meat", "1.00"), ("Tomato", "0.20"), ("Lettuce", "0.10"), ("Egg", "0.50"), ("Pineapple", "0.30"), ("Cheese", "0.40")
+
+Q3.
+SELECT burgerID, burgerDesc, burgerPrice, burgerNoSales
+FROM tblBurger
+ORDER BY burgerID
+
+Q4.
+SELECT ingDesc, ingCost
+FROM tblIngredient
+
+Q5.
+SELECT *
+FROM tblIngredient
+WHERE ingCost < 0.50
+
+Q6.
+SELECT *
+FROM tblBurger
+WHERE burgerPrice BETWEEN "2.50" AND "3.00"
+
+Q7.
+SELECT burgerDesc, burgerPrice, burgerNoSales
+FROM tblBurger
+ORDER BY burgerNoSales
+
+Q8.
+SELECT MAX(burgerPrice)
+FROM tblBurger
+
+Q9.
+SELECT ingDesc
+FROM tblBurger, tblCombination, tblIngredient
+WHERE tblBurger.burgerID = tblCombination.burgerID
+AND tblCombination.ingID = tblIngredient.ingID
+AND burgerDesc = "Plain"
+
+Q10.
+SELECT ingDesc
+FROM tblBurger, tblCombination, tblIngredient
+WHERE tblBurger.burgerID = tblCombination.burgerID
+AND tblCombination.ingID = tblIngredient.ingID
+AND burgerPrice = "3.00"
+
+Q11.
+SELECT COUNT(ingID)
+FROM tblBurger, tblCombination
+WHERE tblBurger.burgerID = tblCombination.burgerID
+AND burgerDesc = "Hawaiian"
+
+Q12.
+SELECT burgerDesc
+FROM tblBurger, tblCombination, tblIngredient
+WHERE tblBurger.burgerID = tblCombination.burgerID
+AND tblCombination.ingID = tblIngredient.ingID
+AND ingDesc = "Tomato"
+
+Q13.
+UPDATE tblIngredient
+SET ingCost = "0.35"
+WHERE ingDesc = "Pineapple"
+
+Q14.
+UPDATE tblBurger
+SET burgerNoSales = "125"
+WHERE burgerDesc = "Plain"
+
+Q15.
+a)
+INSERT INTO tblBurger (burgerDesc)
+VALUES ("Works")
+b)
+INSERT INTO tblCombination (burgerID, ingID)
+VALUES ("5", "1"), ("5", "2"), ("5", "3"), ("5", "4"), ("5", "5"), ("5", "6"), ("5", "7")
+c)
+SELECT SUM(ingCost) 
+FROM tblCombination, tblIngredient 
+WHERE tblIngredient.ingID = tblCombination.ingID 
+AND burgerID = 5
+WHERE burgerDesc = "Works"
+d)
+UPDATE tblBurger
+SET burgerPrice = "0.70" + "3.05"
+WHERE burgerDesc = "Works"
+
+Q16.
+DELETE FROM tblCombination
+WHERE burgerID = "2"
+DELETE FROM tblBurger
+WHERE burgerDesc = "Hawaiian"

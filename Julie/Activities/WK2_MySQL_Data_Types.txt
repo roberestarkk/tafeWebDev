@@ -1,0 +1,31 @@
+Activity 1.
+
+tblCust:
+	custID = smallint(3)
+	custAddr = char(80)
+	custPh = char(10)
+	hFNum = smallint(2)
+	custFName = char(40)
+	custLName = char(60)
+	
+tblHF:
+	hFID = smallint(2)
+	hFName = char(60)
+	hFAddr = char(80)
+	hFPhone = char(10)
+	hFContactName = char(30)
+	
+tblProc:
+	procID = smallint(5)
+	procDate = date
+	procDesc = text
+	procCost = float
+	custID = smallint(3)
+	dentID = smallint(2)
+	
+tblDent:
+	dentID = smallint(2)
+	dentLName = char(60)
+	dentFName = char(30)
+	dentAddr = char(80)
+	dentPhone = char(10)

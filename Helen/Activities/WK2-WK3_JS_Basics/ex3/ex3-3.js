@@ -1,0 +1,1 @@
+document.write("He shouted \"Happy New year!\" to everyone.");

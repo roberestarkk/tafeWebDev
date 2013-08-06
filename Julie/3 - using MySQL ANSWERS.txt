@@ -1,0 +1,220 @@
+Activity 1
+Q1
+SELECT customerFirstName 
+FROM tblCustomer
+
+Q2
+SELECT productName 
+FROM tblProduct
+
+
+Activity 2
+Q1
+SELECT customerFirstName, customerLastName 
+FROM tblCustomer
+
+Q2
+SELECT * 
+FROM tblCustomer
+
+Q3
+SELECT * 
+FROM tblOrderItem
+
+Q4
+SELECT * 
+FROM tblProduct
+
+Q5
+Select * 
+FROM tblSupplier
+
+
+Activity 3
+Q1
+SELECT * 
+FROM tblCustomer 
+ORDER BY customerFirstName
+
+Q2
+SELECT * 
+FROM tblProduct 
+ORDER BY productID
+
+Q3
+SELECT * 
+FROM tblProduct 
+ORDER BY productPrice
+
+
+Activity 4
+Q1
+SELECT * 
+FROM tblProduct 
+WHERE productPrice < 3
+
+Q2
+SELECT * 
+FROM tblProduct 
+WHERE productPrice > 1 AND productPrice< 3
+
+Q3
+SELECT * 
+FROM tblProduct 
+WHERE categoryID = 1
+
+Q4
+SELECT * 
+FROM tblProduct 
+WHERE categoryID <> 1
+
+
+Activity 5
+Q1
+SELECT *
+FROM tblProduct 
+WHERE productPrice BETWEEN 3 AND 6
+
+Q2
+SELECT * 
+FROM tblProduct 
+WHERE categoryID BETWEEN 1 AND 3
+
+
+Activity 6
+Q1
+SELECT * 
+FROM tblProduct 
+WHERE productPrice IN (1.50,2.50,3.50)
+
+Q2
+SELECT * 
+FROM tblOrder 
+WHERE orderDate IN ("2005-6-24", "2005-6-26", "2005-6-28")
+
+
+Activity 7
+Q1
+SELECT * 
+FROM tblCustomer 
+WHERE customerLastName LIKE "S%"
+
+Q2
+SELECT * 
+FROM tblProduct 
+WHERE productDescription LIKE "%100%"
+
+
+Activity 8
+Q1
+SELECT DISTINCT supplierID
+FROM tblProduct
+
+
+ACTIVITY 9
+Q1
+SELECT MAX(productPrice) 
+FROM tblProduct
+ 
+Q2
+SELECT productName, productPrice 
+FROM tblProduct
+WHERE productPrice= (SELECT MAX(productPrice) FROM tblProduct)
+
+Q3
+SELECT AVG(productPrice) 
+FROM tblProduct
+
+Q4
+COUNT(fieldname) counts the number of entries in that column
+COUNT(*) counts the number of records
+
+Q5
+SELECT COUNT(categoryID) 
+FROM tblProduct 
+WHERE categoryID=1
+
+
+Activity 10
+Q1
+SELECT supplierID, SUM(productPrice) 
+FROM tblProduct 
+GROUP BY supplierID
+
+Q2
+SELECT orderID, SUM(orderItemQuantity) 
+FROM tblOrderItem 
+GROUP BY orderID
+
+
+Activity 11
+Q1
+SELECT customerFirstName, customerLastName, tblCustomer.customerID, orderID, orderDate
+FROM tblCustomer, tblOrder
+WHERE tblCustomer.customerID = tblOrder.customerID
+AND tblCustomer.customerID = 4
+
+Q2
+SELECT productName, productPrice, supplierName
+FROM tblProduct, tblSupplier
+WHERE tblProduct.supplierID = tblSupplier.supplierID
+
+Q3
+SELECT productName, productPrice, supplierName
+FROM tblProduct, tblSupplier
+WHERE tblProduct.supplierID = tblSupplier.supplierID
+ORDER BY productPrice
+
+Q4
+SELECT productName, productPrice, supplierName, tblSupplier.supplierID
+FROM tblProduct, tblSupplier
+WHERE tblProduct.supplierID = tblSupplier.supplierID
+ORDER BY productPrice
+
+
+Activity 12
+Q1
+SELECT tblOrder.orderID, tblCustomer.customerID, orderDate, productID, orderItemQuantity
+FROM tblOrderItem, tblOrder, tblCustomer
+WHERE tblOrderItem.orderID = tblOrder.orderID
+AND tblOrder.customerID = tblCustomer.customerID
+AND customerFirstName = "Jane"
+AND customerLastName = "Smith"
+
+Q2
+SELECT tblOrder.orderID, tblCustomer.customerID, orderDate, productName, orderItemQuantity
+FROM tblCustomer, tblOrder,  tblOrderItem, tblProduct
+WHERE tblOrder.customerID = tblCustomer.customerID
+AND tblOrderItem.orderID = tblOrder.orderID
+AND tblProduct.productID = tblOrderItem.productID
+AND customerFirstName = "Jane"
+AND customerLastName = "Smith"
+
+
+Activity 13
+Q1
+INSERT INTO tblCustomer(customerFirstName, customerLastName, customerAddress, customerPhone, customerMobile) 
+VALUES ("Tom", "Black", "66 some street somewhere", "98765432", "09875654")
+
+   OR
+INSERT INTO tblCustomer(customerID, customerFirstName, customerLastName, customerAddress, customerPhone, customerMobile) 
+VALUES ("", "Tom", "Black", "66 some street somewhere", "98765432", "09875654")
+
+   OR
+INSERT INTO tblCustomer(customerID, customerFirstName, customerLastName, customerAddress, customerPhone, customerMobile) 
+VALUES (NULL, "Tom", "Black", "66 some street somewhere", "98765432", "09875654")
+
+Q1 EXTRA
+INSERT INTO tblCustomer(customerFirstName, customerLastName, customerAddress, customerPhone, customerMobile) 
+VALUES ("Anne", "Smith", "66 some street somewhere", "98765432", "09875654"),
+       ("Anne2", "Jones", "77 xxxxx street somewhere", "98765432", "09875654"),
+       ("Anne3", "Alda", "55 yyyy street somewhere", "98765432", "09875654")
+
+Q2
+UPDATE tblCustomer 
+SET customerFirstName = "Amy", customerLastName = "Brown"
+WHERE customerID = 12
+
+Q3
+Delete from tblCustomer 
+where customerID = 12

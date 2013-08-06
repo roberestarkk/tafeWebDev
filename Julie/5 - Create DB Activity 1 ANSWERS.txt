@@ -1,0 +1,106 @@
+Q1
+SELECT employeeFirstName, employeeLastname, employeePhone
+FROM tblEmployee
+
+Q2
+SELECT * 
+FROM tblPosition
+
+Q3
+SELECT rosterDate, positionCode
+FROM tblRoster
+
+Q4
+SELECT * 
+FROM tblRoster 
+WHERE rosterDate="2000-08-23"
+
+Q5
+SELECT * 
+FROM tblEmployee 
+WHERE employeeID >2
+
+Q6
+SELECT employeeFirstname, employeeLastname, employeeAddress, employeePhone
+FROM tblEmployee
+WHERE employeeDOB < "1973-01-01" AND employeePayrate >13.00
+
+Q7
+SELECT * 
+FROM tblRoster
+WHERE rosterDate="2000-08-20" AND positionCode="WASH"
+
+Q8
+SELECT * 
+FROM tblEmployee 
+ORDER BY employeeLastname
+
+Q9
+SELECT * 
+FROM tblEmployee 
+ORDER BY employeeLastname DESC
+
+Q10
+SELECT MAX(rosterID) 
+FROM tblRoster
+
+Q11
+SELECT MIN(rosterID) 
+FROM tblRoster
+
+Q12
+SELECT COUNT(positionCode) 
+FROM tblPosition
+
+Q13
+SELECT  employeeFirstName, employeeLastName, rosterDate
+FROM tblEmployee, tblRoster 
+WHERE tblEmployee.employeeID = tblRoster.employeeID
+AND employeeFirstName="Jane" AND employeeLastname="Smith"
+
+Q14
+SELECT rosterID, employeeID, rosterDate, rosterStartTime, rosterEndTime, positionDescription
+FROM tblRoster, tblPosition
+WHERE tblRoster.positionCode = tblPosition.positionCode
+
+Q15
+SELECT employeeFirstname, employeeLastname, employeePhone
+FROM tblEmployee, tblRoster
+WHERE tblRoster.employeeID = tblEmployee.employeeID
+AND rosterDate="2000-08-23"
+
+Q16
+SELECT employeeFirstName, employeeLastname, employeePhone, positionCode
+FROM tblEmployee, tblRoster
+WHERE tblRoster.employeeID = tblEmployee.employeeID
+AND positionCode = "REST"
+
+Q17
+SELECT employeeFirstName, employeeLastname, employeePhone, positionDescription
+FROM tblEmployee, tblRoster, tblPosition
+WHERE tblRoster.employeeID = tblEmployee.employeeID
+AND tblRoster.positionCode = tblPosition.positionCode
+AND tblRoster.positionCode = "REST"
+
+Q18
+UPDATE tblEmployee
+SET employeePayrate="14.00"
+WHERE employeeID = 3
+
+Q19
+UPDATE tblRoster
+SET rosterStartTime ="10:00"
+WHERE rosterID = 1
+
+Q20
+UPDATE tblEmployee 
+SET employeePayrate= 13.00, employeePhone= 992233445 
+WHERE employeeID = 2 
+
+Q21
+DELETE from tblRoster 
+WHERE rosterDate = "2000-08-20"
+
+q22
+INSERT INTO tblRoster (rosterID, employeeID, rosterDate, rosterStartTime, rosterEndTime, positionCode) 
+VALUES ('', '4', '2006-05-13', '12:00', '16:00', 'WASH')

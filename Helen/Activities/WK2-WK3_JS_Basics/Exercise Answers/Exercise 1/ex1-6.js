@@ -1,0 +1,1 @@
+document.write("hello and welcome to JavaScript!");// a simple greeting

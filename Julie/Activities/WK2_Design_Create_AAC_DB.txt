@@ -1,0 +1,65 @@
+Activity 1.
+2.
+CREATE TABLE tblEmployees
+(
+empID SMALLINT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+empSurname VARCHAR(50) NOT NULL,
+empFName VARCHAR(30) NOT NULL,
+empDept varchar(50) NOT NULL
+)
+CREATE TABLE tblCourses
+(
+courseID CHAR(4) NOT NULL PRIMARY KEY,
+courseName VARCHAR(40) NOT NULL,
+courseCost DECIMAL(6,2) DEFAULT NULL
+)
+CREATE TABLE tblAttendance
+(
+attendID BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+empID SMALLINT(6) NOT NULL,
+courseID CHAR(4) NOT NULL,
+attendDate DATE NOT NULL
+)
+
+3.
+INSERT INTO tblEmployees (empSurname, empFName, empDept)
+VALUES ("Jones", "Tom", "Staff Services"), ("Pitt", "Brad", "Sales"), ("Kidman", "Nicole", "Staff Services"), ("Sellers", "Peter", "Sales"), ("Smith", "John", "Administration"), ("Lew", "Jan", "Administration")
+INSERT INTO tblCourses (courseID, courseName, courseCost)
+VALUES ("AC01", "ACCESS 2003", "700"), ("EX02", "EXCEL 2007", "800"), ("WD01", "WORD 2003", "600"), ("PP02", "Power Point 2007", "500"), ("AC02", "ACCESS 2007", "850"), ("WD02", "WORD 2007", "900")
+INSERT INTO tblAttendance (empID, courseID, attendDate)
+VALUES ("2", "AC01", "2004-04-05"), ("3", "AC01", "2004-06-07"), ("1", "AC02", "2007-03-12"), ("2", "AC02", "2007-04-08"), ("3", "AC02", "2007-06-24"), ("4", "AC02", "2008-03-15"), ("1", "WD01", "2004-05-12"), ("5", "WD01", "2005-06-07")
+
+4.
+a)
+SELECT empSurname, empFName
+FROM tblEmployees
+ORDER BY empSurname
+(Result: Jones, Kidman, Lew, Pitt, Sellers, Smith)
+
+b)
+SELECT courseID, courseName, courseCost
+From tblCourses
+ORDER BY courseCost DESC
+(Result: 900.00, 850.00, 800.00, 700.00, 600.00, 500.00)
+
+c)
+SELECT tblCourses.courseID, courseName, courseCost
+FROM tblCourses, tblAttendance, tblEmployees
+WHERE tblEmployees.empID = tblAttendance.empID
+AND tblCourses.courseID = tblAttendance.courseID
+AND empFName = "Tom"
+AND empSurname = "Jones"
+(Result: AC02, WD01)
+
+d)
+SELECT empFName, empSurname
+FROM tblEmployees, tblAttendance, tblCourses
+WHERE tblEmployees.empID = tblAttendance.empID
+AND tblAttendance.courseID = tblCourses.courseID
+AND courseName = "ACCESS 2007"
+(Result: Tom Jones, Brad Pitt, Nicole Kidman, Peter Sellers)
+
+e)
+SELECT MAX(courseCost)
+FROM tblCourses
+(Result: 900.00)

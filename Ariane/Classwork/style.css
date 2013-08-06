@@ -1,0 +1,68 @@
+/*CSS Document*/
+
+body
+{
+	font-family: Verdana, Arial, Sans-serif;
+	font-size: 12px;
+	background-color: #EFEFEF;
+}
+
+.example
+{
+	font-family: "Courier New", Courier, monospace;
+	color: #FFCC33;
+	background-color: #333333;
+}
+
+.code
+{
+	font-family: "Courier New", Courier, monospace;
+	color: #FF6600;
+}
+
+a:link
+{
+	color: #000066;
+}
+
+a:visited
+{
+	color: #999999;
+}
+
+a:hover
+{
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #666666;
+}
+
+a:active
+{
+	color: #FF9900;
+}
+
+h1,h2,h3
+{
+	color: #333333;
+}
+
+h1
+{
+	font-size: 150%;
+}
+
+h2
+{
+	font-size: 120%;
+}
+
+h3
+{
+	font-size: 110%;
+}
+
+dt
+{
+	font-style: oblique;
+}

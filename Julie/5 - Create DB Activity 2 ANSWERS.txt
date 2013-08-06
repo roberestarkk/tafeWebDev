@@ -1,0 +1,71 @@
+Q3
+SELECT * 
+FROM tblProduct
+
+Q4
+SELECT warehouseNo, warehouseName 
+FROM tblWarehouse
+
+Q5
+SELECT productDescription, itemCode, price
+FROM tblProduct 
+ORDER BY productDescription
+
+Q6
+SELECT productDescription, units, itemCode
+FROM tblProduct
+WHERE units<50
+
+Q7
+SELECT productDescription, units, price
+FROM tblProduct
+WHERE price>=25.00 and price <=100
+
+Q8
+SELECT productNo, productDescription, itemDescription
+FROM tblProduct, tblItem
+WHERE tblProduct.itemCode = tblItem.itemCode
+
+Q9
+SELECT productNo, productDescription, itemCode
+FROM tblProduct
+WHERE itemCode="HW"
+
+Q10
+SELECT productNo, productDescription, units, price
+FROM tblProduct, tblWarehouse
+WHERE tblProduct.warehouseNo = tblWarehouse.warehouseNo
+AND warehouseDescriptionName = "Northside"
+
+Q11
+SELECT productDescription, units, itemDescription, warehouseName, price
+FROM tblProduct, tblItem, tblWarehouse
+WHERE tblProduct.itemCode = tblItem.itemCode
+AND tblProduct.warehouseNo = tblWarehouse.warehouseNo
+ORDER BY price DESC
+
+Q12
+UPDATE tblProduct
+SET price = 250.50
+WHERE productDescription = "Breadmaker"
+
+Q13
+INSERT INTO tblWarehouse (warehouseName, warehouseMgr)
+VALUES ('Southside', 'Joe Tarragano')
+
+Q14
+UPDATE tblProduct
+SET warehouseNo = 4
+WHERE itemCode = "PC"
+
+Q15
+SELECT COUNT(productNo)
+FROM tblProduct 
+WHERE warehouseNo=4
+
+Q16
+SELECT warehouseName, itemDescription, productDescription
+FROM tblWarehouse, tblItem, tblProduct
+WHERE tblProduct.warehouseNo = tblWarehouse.warehouseNo
+AND tblProduct.itemCode = tblItem.itemCode
+ORDER BY warehouseName, itemDescription, productDescription

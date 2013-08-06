@@ -1,0 +1,228 @@
+Activity 1.
+1.
+SELECT customerFirstName
+FROM tblCustomer
+
+2.
+SELECT productname
+FROM tblProduct
+
+
+Activity 2.
+1.
+SELECT customerFirstName, customerLastName
+FROM tblCustomer
+
+2.
+SELECT *
+FROM tblCustomer
+
+3.
+SELECT *
+FROM tblOrderItem
+
+4.
+SELECT *
+FROM tblProduct
+
+5.
+SELECT *
+FROM tblSupplier
+
+
+Activity 3.
+1.
+SELECT *
+FROM tblCustomer
+ORDER BY customerFirstName
+
+2.
+SELECT *
+FROM tblProduct
+ORDER BY productID
+
+3.
+SELECT *
+FROM tblProduct
+ORDER BY productPrice
+
+
+Activity 4.
+1.
+SELECT *
+FROM tblProduct
+WHERE productPrice < 3.00
+
+2.
+SELECT *
+FROM tblProduct
+WHERE productPrice > 1.00
+AND productPrice < 3.00
+
+3.
+SELECT *
+FROM tblProduct
+WHERE categoryID = 1
+
+4.
+SELECT *
+FROM tblProduct
+WHERE categoryID != 1
+
+
+Activity 5.
+1.
+SELECT *
+FROM tblProduct
+WHERE productPrice BETWEEN 3.00 and 6.00
+
+2.
+SELECT *
+FROM tblProduct
+WHERE categoryID BETWEEN 1 and 3
+
+
+Activity 6.
+1.
+SELECT *
+FROM tblProduct
+WHERE productPrice IN (1.50, 2.50, 3.50)
+
+2.
+SELECT *
+FROM tblOrder
+WHERE orderDate IN (2005-6-24, 2005-6-26, 2005-6-28)
+
+
+Activity 7.
+1.
+Select *
+FROM tblCustomer
+WHERE customerLastName LIKE "S%"
+
+2.
+SELECT *
+FROM tblProduct
+WHERE productDescription LIKE "%100g%"
+AND productDescription LIKE "%100ml%"
+
+
+Activity 8.
+1.
+SELECT DISTINCT supplierID
+FROM tblProduct
+
+
+Activity 9.
+1.
+SELECT MAX(productPrice)
+FROM tblProduct
+
+2.
+SELECT productName, MAX(productPrice)
+FROM tblProduct
+
+3.
+SELECT AVG(productPrice)
+FROM tblProduct
+
+4.
+COUNT(A Field) will return the number of elements in a field,
+COUNT(*) will return the number of elements in the largest field.
+
+5.
+SELECT COUNT(productID)
+FROM tblProduct
+WHERE categoryID = 1
+Result: 9
+
+
+Activity 10.
+1.
+SELECT supplierID, SUM(productPrice)
+from tblProduct
+GROUP BY supplierID
+
+2.
+SELECT SUM(orderItemQuantity), orderID
+FROM tblOrderItem
+GROUP BY orderID
+
+
+Activity 11.
+1.
+SELECT customerFirstName, customerLastName, tblCustomer.customerID, tblOrder.orderID, orderDate
+FROM tblCustomer, tblOrder
+WHERE tblCustomer.customerID = tblOrder.customerID
+AND tblCustomer.customerID = 4
+
+2.
+SELECT productName, productPrice, supplierName
+FROM tblProduct, tblSupplier
+WHERE tblProduct.supplierID = tblSupplier.supplierID
+
+3.
+SELECT productName, productPrice, supplierName
+FROM tblProduct, tblSupplier
+WHERE tblProduct.supplierID = tblSupplier.supplierID
+ORDER BY productPrice
+
+4.
+SELECT productName, productPrice, supplierID, supplierName
+FROM tblProduct, tblSupplier
+WHERE tblProduct.supplierID = tblSupplier.supplierID
+ORDER BY productPrice
+
+
+Activity 12.
+1.
+SELECT tblOrder.orderID, orderDate, tblCustomer.customerID, productID, orderItemQuantity
+FROM tblOrder, tblOrderItem, tblCustomer
+WHERE tblOrder.orderID = tblOrderItem.orderID
+AND tblCustomer.CustomerID = tblOrder.CustomerID
+AND tblCustomer.customerFirstName = "Jane"
+AND tblCustomer.customerLastName = "Smith"
+
+2.
+SELECT tblOrder.orderID, orderDate, tblCustomer.customerID, tblProduct.productID, orderItemQuantity, tblProduct.productName
+FROM tblOrder, tblOrderItem, tblCustomer, tblProduct
+WHERE tblOrder.orderID = tblOrderItem.orderID
+AND tblCustomer.CustomerID = tblOrder.CustomerID
+AND tblOrderItem.productID = tblProduct.productID
+AND tblCustomer.customerFirstName = "Jane"
+AND tblCustomer.customerLastName = "Smith"
+
+
+Activity 13.
+1.
+INSERT INTO tblCustomer (customerFirstName, customerLastName, customerAddress, customerPhone, customerMobile)
+VALUES ("Sam", "Shannon", "42 Wallaby Way, Sydney", "9991 1972", "01 1899 9811")
+
+2.
+UPDATE tblCustomer
+Set customerFirstName = "Phillip",
+customerLastName = "Sherman"
+WHERE customerFirstName = "Sam"
+AND customerLastName = "Shannon"
+
+3.
+DELETE FROM tblCsutomer
+WHERE customerFirstName = "Phillip"
+AND customerLastName = "Sherman"
+
+
+Bonus Activity.
+1. Write a query to return the first name of the customers who ordered Coke products to send to Coke for their next batch of "Have a Coke with ..." Cans.
+SELECT DISTINCT customerFirstName
+FROM tblCustomer, tblOrder, tblOrderItem, tblProduct
+WHERE tblCustomer.customerID = tblOrder.customerID
+AND tblOrder.orderID = tblOrderItem.orderID
+AND tblOrderItem.productID = tblProduct.productID
+AND productName LIKE "%Coke%"
+ORDER BY customerFirstName
+
+2. Write a query to return the number of items of each particular price that have been ordered in total.
+SELECT productPrice, count(tblProduct.productID)
+FROM tblOrderItem, tblProduct
+WHERE tblOrderItem.productID = tblProduct.productID
+GROUP BY productPrice
