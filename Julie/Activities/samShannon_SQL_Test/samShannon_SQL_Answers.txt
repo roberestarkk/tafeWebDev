@@ -1,0 +1,95 @@
+Q5.
+DROP TABLE tblInstructor
+DROP TABLE tblTimetable
+
+Q6.
+CREATE TABLE tblClass (
+class_id TINYINT(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+description VARCHAR(255) NOT NULL,
+level VARCHAR(20) NOT NULL,
+cost TINYINT(4) NOT NULL
+)
+
+Q7.
+INSERT INTO tblClass (description, level, cost)
+VALUES ("Learn to swim age 6 months - 2 years", "Babies", 60), ("Learn to swim age 2 years - 5 years", "Toddlers", 80), ("Swimming alone", "Toddlers", 100)
+
+Q8.
+a)
+SELECT name, phone
+FROM tblInstructor
+ORDER BY name
+
+b)
+SELECT day, time
+FROM tblTimetable
+WHERE day = "Monday"
+
+c)
+SELECT COUNT(*)
+FROM tblTimetable
+
+d)
+SELECT day, COUNT(timetable_id)
+FROM tblTimetable
+GROUP BY day
+
+e)
+SELECT MAX(cost)
+FROM tblClass
+
+f)
+SELECT description, MAX(cost)
+FROM tblClass
+
+g)
+SELECT time, description, level
+FROM tblClass, tblTimetable
+WHERE tblClass.class_id = tblTimetable.class_id
+AND day = "Monday"
+
+h)
+SELECT name, address, phone
+FROM tblInstructor
+WHERE name LIKE "%Smith"
+
+i)
+SELECT day, time
+FROM tblTimetable, tblClass
+WHERE tblClass.class_id = tblTimetable.class_id
+AND level = "Babies"
+
+j)
+SELECT name, description, level, day, time
+FROM tblClass, tblTimetable, tblInstructor
+WHERE tblClass.class_id = tblTimetable.class_id
+AND tblTimetable.instructor_id = tblInstructor.instructor_id
+
+k)
+INSERT INTO tblInstructor (name, address, phone)
+VALUES ("Phillip Sherman", "42 Wallaby Way, Sydney", 01189998119)
+
+l)
+UPDATE tblInstructor
+SET phone = "99887744"
+WHERE name = "Jane White"
+
+m)
+DELETE FROM tblTimetable
+WHERE day = "Wednesday"
+AND time = "10:00"
+
+n)
+SELECT name, phone
+FROM tblInstructor, tblTimetable, tblClass
+WHERE tblInstructor.instructor_id = tblTimetable.instructor_id
+AND tblTimetable.class_id = tblClass.class_id
+AND level = "Babies"
+
+o)
+ALTER TABLE tblInstructor
+ADD email VARCHAR(200)
+
+p)
+ALTER TABLE tblInstructor
+DROP COLUMN email
