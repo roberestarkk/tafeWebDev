@@ -1,11 +1,65 @@
 /*CSS Document*/
+html
+{
+	position: relative;
+	min-height: 100%
+}
 
 body
 {
 	font-family: Verdana, Arial, Sans-serif;
 	font-size: 12px;
 	background-color: #EFEFEF;
+	margin: 0 0 40px; /* bottom = footer height */
 }
+
+h1,h2,h3
+{
+	color: #333333;
+}
+
+h1
+{
+	font-size: 150%;
+}
+
+h2
+{
+	font-size: 120%;
+}
+
+h3
+{
+	font-size: 110%;
+}
+
+dt
+{
+	font-style: oblique;
+}
+
+nav
+{
+	width: 20%;
+	background-color: #cccccc;
+	border-style:  solid;
+	border-width: thin;
+	border-radius: 15px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+footer
+{
+	position: absolute;
+	left: 25%;
+	bottom: 0;
+	height: 40px;
+	width: 50%;
+	border: 1px solid black;
+	text-align: center;
+}
+
+/* ========================================================== */
 
 .example
 {
@@ -42,27 +96,24 @@ a:active
 	color: #FF9900;
 }
 
-h1,h2,h3
+/* ========================================================== */
+
+#box1
 {
-	color: #333333;
+	border: 1px blue solid;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	left: 50px;
+	top: 20px;
 }
 
-h1
+#box2
 {
-	font-size: 150%;
-}
-
-h2
-{
-	font-size: 120%;
-}
-
-h3
-{
-	font-size: 110%;
-}
-
-dt
-{
-	font-style: oblique;
+	border: 1px green solid;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	left: 100px;
+	top: 50px;
 }
